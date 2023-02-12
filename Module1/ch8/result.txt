@@ -1,0 +1,189 @@
+PS Z:\Compartido\Python.Journey\learning\Module1> cd ch8
+PS Z:\Compartido\Python.Journey\learning\Module1\ch8> python scrape.py -t jpg -f img http://localhost:8000/simple_server
+
+*****args = Namespace(type='jpg', format='img', url='http://localhost:8000/simple_server')
+*****args.url = http://localhost:8000/simple_server
+*****args.format = img
+*****args.type = jpg
+
+
+
+==========start scrape==========
+
+
+url: http://localhost:8000/simple_server
+format_: img
+type_: jpg
+
+page: <Response [200]>
+
+soup: <!DOCTYPE html>
+
+<html lang="en">
+<head><title>Cool Owls!</title></head>
+<body>
+<h1>Welcome to my owl gallery</h1>
+<div>
+<img height="128" src="img/owl-alcohol.png"/>
+<img height="128" src="img/owl-book.png"/>
+<img height="128" src="img/owl-books.png"/>
+<img height="128" src="img/owl-ebook.jpg"/>
+<img height="128" src="img/owl-rose.jpeg"/>
+</div>
+<p>Do you like my owls? Answer the question!</p>
+</body>
+</html>
+
+***** start in _fetch_images() *****
+
+soup:
+ <!DOCTYPE html>
+
+<html lang="en">
+<head><title>Cool Owls!</title></head>
+<body>
+<h1>Welcome to my owl gallery</h1>
+<div>
+<img height="128" src="img/owl-alcohol.png"/>
+<img height="128" src="img/owl-book.png"/>
+<img height="128" src="img/owl-books.png"/>
+<img height="128" src="img/owl-ebook.jpg"/>
+<img height="128" src="img/owl-rose.jpeg"/>
+</div>
+<p>Do you like my owls? Answer the question!</p>
+</body>
+</html>
+
+base_url: http://localhost:8000/simple_server
+
+================================
+
+img = <img height="128" src="img/owl-alcohol.png"/>
+
+src = img/owl-alcohol.png
+
+img_url = {base_url}/{src} = http://localhost:8000/simple_server/img/owl-alcohol.png
+
+name = owl-alcohol.png
+
+images = [{'name': 'owl-alcohol.png', 'url': 'http://localhost:8000/simple_server/img/owl-alcohol.png'}]
+================================
+
+
+================================
+
+img = <img height="128" src="img/owl-book.png"/>
+
+src = img/owl-book.png
+
+img_url = {base_url}/{src} = http://localhost:8000/simple_server/img/owl-book.png
+
+name = owl-book.png
+
+images = [{'name': 'owl-alcohol.png', 'url': 'http://localhost:8000/simple_server/img/owl-alcohol.png'}, {'name': 'owl-book.png', 'url': 'http://localhost:8000/simple_server/img/owl-book.png'}]
+================================
+
+
+================================
+
+img = <img height="128" src="img/owl-books.png"/>
+
+src = img/owl-books.png
+
+img_url = {base_url}/{src} = http://localhost:8000/simple_server/img/owl-books.png
+
+name = owl-books.png
+
+images = [{'name': 'owl-alcohol.png', 'url': 'http://localhost:8000/simple_server/img/owl-alcohol.png'}, {'name': 'owl-book.png', 'url': 'http://localhost:8000/simple_server/img/owl-book.png'}, {'name': 'owl-books.png', 'url': 'http://localhost:8000/simple_server/img/owl-books.png'}]
+================================
+
+
+================================
+
+img = <img height="128" src="img/owl-ebook.jpg"/>
+
+src = img/owl-ebook.jpg
+
+img_url = {base_url}/{src} = http://localhost:8000/simple_server/img/owl-ebook.jpg
+
+name = owl-ebook.jpg
+
+images = [{'name': 'owl-alcohol.png', 'url': 'http://localhost:8000/simple_server/img/owl-alcohol.png'}, {'name': 'owl-book.png', 'url': 'http://localhost:8000/simple_server/img/owl-book.png'}, {'name': 'owl-books.png', 'url': 'http://localhost:8000/simple_server/img/owl-books.png'}, {'name': 'owl-ebook.jpg', 'url': 'http://localhost:8000/simple_server/img/owl-ebook.jpg'}]
+================================
+
+
+================================
+
+img = <img height="128" src="img/owl-rose.jpeg"/>
+
+src = img/owl-rose.jpeg
+
+img_url = {base_url}/{src} = http://localhost:8000/simple_server/img/owl-rose.jpeg
+
+name = owl-rose.jpeg
+
+images = [{'name': 'owl-alcohol.png', 'url': 'http://localhost:8000/simple_server/img/owl-alcohol.png'}, {'name': 'owl-book.png', 'url': 'http://localhost:8000/simple_server/img/owl-book.png'}, {'name': 'owl-books.png', 'url': 'http://localhost:8000/simple_server/img/owl-books.png'}, {'name': 'owl-ebook.jpg', 'url': 'http://localhost:8000/simple_server/img/owl-ebook.jpg'}, {'name': 'owl-rose.jpeg', 'url': 'http://localhost:8000/simple_server/img/owl-rose.jpeg'}]
+================================
+
+
+***** end in _fetch_images() *****
+
+images in scrape after _fetch_images():
+ [{'name': 'owl-alcohol.png', 'url': 'http://localhost:8000/simple_server/img/owl-alcohol.png'}, {'name': 'owl-book.png', 'url': 'http://localhost:8000/simple_server/img/owl-book.png'}, {'name': 'owl-books.png', 'url': 'http://localhost:8000/simple_server/img/owl-books.png'}, {'name': 'owl-ebook.jpg', 
+'url': 'http://localhost:8000/simple_server/img/owl-ebook.jpg'}, {'name': 'owl-rose.jpeg', 'url': 'http://localhost:8000/simple_server/img/owl-rose.jpeg'}]
+
+***** start in _filter_images() *****
+
+ext_map: {'png': ['.png'], 'jpg': ['.jpg', '.jpeg']}
+img in images: <generator object _filter_images.<locals>.<genexpr> at 0x000001B32EFBD6D0>
+
+***** end in _filter_images() *****
+
+
+***** start in _matches_extension() *****
+
+name: owl-alcohol
+extension: .png
+
+***** end in _matches_extension() *****
+
+
+***** start in _matches_extension() *****
+
+name: owl-book
+extension: .png
+
+***** end in _matches_extension() *****
+
+
+***** start in _matches_extension() *****
+
+name: owl-books
+extension: .png
+
+***** end in _matches_extension() *****
+
+
+***** start in _matches_extension() *****
+
+name: owl-ebook
+extension: .jpg
+
+***** end in _matches_extension() *****
+
+
+***** start in _matches_extension() *****
+
+name: owl-rose
+extension: .jpeg
+
+***** end in _matches_extension() *****
+
+images in scrape after _filter_images():
+ [{'name': 'owl-ebook.jpg', 'url': 'http://localhost:8000/simple_server/img/owl-ebook.jpg'}, {'name':: 'owl-rose.jpeg', 'url': 'http://localhost:8000/simple_server/img/owl-rose.jpeg'}]
+
+==========end scrape==========
+
+
+Done
+PS Z:\Compartido\Python.Journey\learning\Module1\ch8>           
