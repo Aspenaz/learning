@@ -1,0 +1,10 @@
+https://www.geeksforgeeks.org/python-programming-language/?ref=shm
+
+https://programacionfacil.org/cursos/tkinter/tkinter_index.html
+
+https://unipython.com/cursos/curso-de-programacion-orientada-a-objetos-en-python/
+https://unipython.com/blog/
+https://unipython.com/tkinter-label-entry-metodos-place-y-grid/
+
+
+
