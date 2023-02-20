@@ -4,12 +4,13 @@
 from tkinter import * 
 
 root = Tk()
+root.geometry('300x200')
 
 # Creación del marco
 marco_principal = Frame()
 # Empaquetado del marco
 marco_principal.pack()
 # Redimencionado del marco
-marco_principal.config(width='800', height='600', bg='red')
+marco_principal.config(width='180', height='160', bg='brown')
 
 root.mainloop()

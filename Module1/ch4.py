@@ -1,47 +1,448 @@
-#================vat.function.py========================
-""" print() 
+# ===========================================================
+#               Improve readability
+# ===========================================================
+
+
+""" print('=' * 80 + '\n') 
+print('\t\t\tdata.science.example.py\n')
+
+def do_report(data_source):
+    data = fetch_data(data_source)
+    parsed_data = parse_data(data)
+    filtered_data = filter_data(parsed_data)
+    polished_data = polish_data(filtered_data)
+
+    final_data = analyse(polished_data)
+
+    report = Report(final_data)
+    return report 
+
+
+print()
+
+   
+print('\n' + '=' * 80)  """
+
+#==========================================================
+
+print('=' * 80 + '\n') 
+print('\t\t\tmatrix.multiplication.nofunc.py\n')
+
+a = [[1, 2], [3, 4]]
+b = [[5, 1], [2, 1]]
+
+c = [[sum(i * j for i, j in zip(r, c)) for r in a] for c in zip(*b)]  # c: [[9, 23], [3, 7]]  # Respuesta incorrecta.
+print('c:', c)
+print()
+
+c = [[sum(i * j for i, j in zip(r, c)) for c in zip(*b)] for r in a]  # c: [[9, 3], [23, 7]]
+print('c:', c)  # c: [[9, 3], [23, 7]]
+print()
+
+'c in zip(*b) = [(5, 2), (1, 1)]'
+'r in a       = [[1, 2], [3, 4]]'
+'i * j for i, j in zip(r, c) = '
+'zip(r, c) = [  [ [1, 2]i x (5, 2)j, [1, 2]i x (1, 1)j ],  [ [3, 4]i x(5, 2)j, [3, 4]i x (1, 1)j ]  ]'
+
+print('\n' + '=' * 80) 
+
+#==========================================================
+
+print(list(zip('abcdefg', range(3), range(4))))  # [('a', 0, 0), ('b', 1, 1), ('c', 2, 2)]
+print()
+print(list(zip(a, b)))  # [ ([1, 2], [5, 1]), ([3, 4], [2, 1]) ]
+print()
+print(list(zip(a, *b)))  # [ ([1, 2], 5, 2), ([3, 4], 1, 1) ]   
+print()
+print(list(zip(b)))  # [([5, 1],), ([2, 1],)]
+print()
+print(list(zip(*b)))  # [(5, 2), (1, 1)]
+print()
+print(list(zip(r, c) for c in zip(*b) for r in a))
+print()
+r = [[1, 2], [3, 4]]
+c = [(5, 2), (1, 1)]
+print(list(zip(r, c)))  # [ ([1, 2], (5, 2)), ([3, 4], (1, 1)) ]
+
+
+
+#==========================================================
+
+print('=' * 80 + '\n') 
+print('\t\t\tmatrix.multiplication.func.py\n')
+
+def matrix_mul(a, b):
+    return  [[sum(i * j for i, j in zip(r, c)) for c in zip(*b)] for r in a]
+
+a = [[1, 2], [3, 4]]
+b = [[5, 1], [2, 1]]
+
+c = matrix_mul(a, b)
+print('c:', c)  # c: [[9, 3], [23, 7]] 
+
+
+print('\n' + '=' * 80) 
+
+
+
+# ===========================================================
+#               Improve traceability
+# ===========================================================
+
+
+print('=' * 80 + '\n') 
+print('\t\t\tvat.py\n')
+
+price = 100 
+final_price1 = price * 1.2 
+final_price2 = price + price / 5.0
+final_price3 = price * (100 + 20) / 100.0 
+final_price4 = price + price * 0.2 
+
+print('final_price1:', final_price1)
+print('final_price2:', final_price2)
+print('final_price3:', final_price3)
+print('final_price4:', final_price4)
+
+
+
+print('\n' + '=' * 80) 
+
+#==========================================================
+
+
+print('=' * 80 + '\n') 
+print('\t\t\tvat.function.py\n')
+
+print() 
 
 def calculate_price_with_vat(price, vat):
     return price * (100 + vat) / 100
 
 
-final_price = calculate_price_with_vat(1000, 5)
-print (final_price)
+final_price = calculate_price_with_vat(100, 20)
+print (final_price)  # 120.0
 
 print()
- """
- 
-#================key.points.assignment.py========================
-""" 
-print() 
+
+
+
+print('\n' + '=' * 80) 
+
+
+
+# ===========================================================
+#               Scopes and name resolution
+# ===========================================================
+
+
+print('=' * 80 + '\n') 
+print('\t\t\tscoping.level.1.py\n')
+
+test = 0  # this is defined in the global scope
+
+def my_fuction():
+    test = 1  # # this is defined in the local scope of the function 
+    print('my_function:', test)
+
+my_fuction()
+print('global:', test)
+
+
+print('\n' + '=' * 80) 
+
+
+#==========================================================
+
+print('=' * 80 + '\n') 
+print('\t\t\tscoping.level.2.py\n')
+
+
+test = 0  # global scope 
+
+def outer():
+    test = 1  # outer scope
+
+    def inner():
+        test = 2  # inner scope 
+        print('inner:', test)
+
+    inner()
+    print('outer:', test)
+
+
+outer()
+print('global:', test)
+# inner: 2
+# outer: 1
+# global: 0
+
+
+print('\n' + '=' * 80) 
+
+
+
+# ===========================================================
+#           The global and nonlocal statements
+# ===========================================================
+
+print('=' * 80 + '\n') 
+print('\t\t\tscoping.level.2.nonlocal.py\n')
+
+test = 0  # global scope 
+
+def outer():
+    test = 1  # outer scope 
+
+    def inner():
+        nonlocal test 
+        test = 2  # nearest enclosing scope 
+        print('inner:', test)
+        
+    inner()
+    print('outer:', test)  # 2 by nonlocal
+
+
+outer()
+print('global:', test) 
+
+# inner: 2
+# outer: 2
+# global: 0
+
+
+
+print('\n' + '=' * 80) 
+
+#==========================================================
+
+print('=' * 80 + '\n') 
+print('\t\t\tscoping.level.2.nonlocal.py modified by global.1\n')
+
+test = 0  # global scope 
+
+def outer():
+    test = 1  # outer scope 
+
+    def inner():
+        global test  # outer scope 
+        test = 2
+        print('inner:', test)
+
+    inner()
+    print('outer:', test)
+
+
+outer()
+print('global:', test) 
+
+# inner: 2
+# outer: 1
+# global: 2
+
+
+print('\n' + '=' * 80) 
+
+#==========================================================
+
+print('=' * 80 + '\n') 
+print('\t\t\tscoping.level.2.nonlocal.py modified by global.2\n')
+
+def outer():
+    def inner():
+        global test  # global scope 
+        test = 2
+        print('inner:', test)
+
+    inner()
+    print('outer:', test)
+
+
+outer()
+print('global:', test) 
+
+# inner: 2
+# outer: 2
+# global: 2
+
+
+print('\n' + '=' * 80) 
+
+#==========================================================
+
+
+print('=' * 80 + '\n') 
+print('\t\t\tscoping.level.2.global.py\n')
+
+test = 0  # global scope 
+
+def outer():
+    test = 1  # outer scope 
+
+    def inner():
+        global test 
+        test = 2  # global scope 
+        print('inner:', test)
+    inner()
+    print('outer:', test)
+
+
+outer()
+print('global:', test)
+
+# inner: 2
+# outer: 1
+# global: 2
+
+
+print('\n' + '=' * 80) 
+
+# ===========================================================
+#   Assignment to argument names don't affect the caller
+# ===========================================================
+
+
+print('=' * 80 + '\n') 
+print('\t\t\tkey.points.assignment.py\n')
 
 x = 3
+
 def func(x):
     x = 7 
     print(x)
     
-func(x)
-print(x)
 
-print()
+func(x)  # 7
+print(x)  # 3
 
-"""
- 
-#================key.points.mutable.py========================
-""" 
-print() 
+
+# ===========================================================
+#           Changing a mutable affects the caller
+# ===========================================================
+
+
+print('=' * 80 + '\n') 
+print('\t\t\tkey.points.mutable.py\n')
+
 
 x = [1, 2, 3]
+
 def func(x):
     x[1] = 42 
 
-print(x)   
-func(x)
-print(x)
 
+print(x)  # [1, 2, 3]   
+func(x)   # this affects the caller!
+print(x)  # [1, 42, 3]
+
+
+print('\n' + '=' * 80) 
+
+#==========================================================
+
+
+print('=' * 80 + '\n') 
+print('\t\t\tkey.points.mutable.assignment.py.py\n')
+
+x = [1, 2, 3]
+
+def func(x):
+    x[1] = 42  # this changes the caller!
+    x = 'something else'  # this points x to a new string object 
+
+
+print(x)  # [1, 2, 3]   
+func(x)   
+print(x)  # [1, 42, 3] 
+print(func.x)  #  
 print()
 
- """
+
+print('\n' + '=' * 80) 
+
+#==========================================================
+
+print('=' * 80 + '\n') 
+
+class Func_x:
+    x = [1, 2, 3]
+
+    def func(x):
+        x[1] = 42  # this changes the caller!
+        x = 'something else'  # this points x to a new string object 
+
+
+print(Func_x.x)  # [1, 2, 3]   
+Func_x.func(Func_x.x)   
+print(Func_x.x)  # [1, 42, 3] 
+# print(Func_x.func.x)  # Extract innner scope variable!!!!!!!! How is it?   # AttributeError: 'function' object has no attribute 'x'
+
+
+
+
+
+
+
+print('\n' + '=' * 80) 
+
+
+#==========================================================
+
+
+print('=' * 80 + '\n') 
+print('\t\t\t .py\n')
+
+
+
+print('\n' + '=' * 80) 
+ 
+ #==========================================================
+
+ #==========================================================
+
+
+print('=' * 80 + '\n') 
+print('\t\t\t .py\n')
+
+
+
+print('\n' + '=' * 80) 
+
+
+#==========================================================
+
+
+print('=' * 80 + '\n') 
+print('\t\t\t .py\n')
+
+
+
+print('\n' + '=' * 80) 
+
+
+#==========================================================
+
+
+print('=' * 80 + '\n') 
+print('\t\t\t .py\n')
+
+
+
+print('\n' + '=' * 80) 
+
+
+#==========================================================
+
+
+print('=' * 80 + '\n') 
+print('\t\t\t .py\n')
+
+
+
+print('\n' + '=' * 80) 
+
+
+
  
 #================arguments.keyword.py========================
 """ 
