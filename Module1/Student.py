@@ -1,3 +1,11 @@
+#
+#! [Alert: Deprecated method, do not use]  
+#? [Query or question: Should this method be exposed in the public API?]  
+#// [CommentedOut: Do not use] 
+#todo [Refactor: this method so that it conforms to the API. Create some test cases]   
+#* [Important: information is highlighted] 
+
+
 class Student:
     def __init__(self, first_name, last_name):
         self.first_name = first_name

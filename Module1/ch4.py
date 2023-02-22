@@ -1,3 +1,11 @@
+
+#! [Alert: Deprecated method, do not use]  
+#? [Query or question: Should this method be exposed in the public API?]  
+#// [CommentedOut: Do not use] 
+#todo [Refactor: this method so that it conforms to the API. Create some test cases]   
+#* [Important: information is highlighted] 
+
+
 # ===========================================================
 #               Improve readability
 # ===========================================================
@@ -26,7 +34,7 @@ print('\n' + '=' * 80)  """
 #==========================================================
 
 print('=' * 80 + '\n') 
-print('\t\t\tmatrix.multiplication.nofunc.py\n')
+print('\t\t\t matrix.multiplication.nofunc.py\n')
 
 a = [[1, 2], [3, 4]]
 b = [[5, 1], [2, 1]]
@@ -69,7 +77,7 @@ print(list(zip(r, c)))  # [ ([1, 2], (5, 2)), ([3, 4], (1, 1)) ]
 #==========================================================
 
 print('=' * 80 + '\n') 
-print('\t\t\tmatrix.multiplication.func.py\n')
+print('\t\t\t matrix.multiplication.func.py\n')
 
 def matrix_mul(a, b):
     return  [[sum(i * j for i, j in zip(r, c)) for c in zip(*b)] for r in a]
@@ -91,7 +99,7 @@ print('\n' + '=' * 80)
 
 
 print('=' * 80 + '\n') 
-print('\t\t\tvat.py\n')
+print('\t\t\t vat.py\n')
 
 price = 100 
 final_price1 = price * 1.2 
@@ -112,7 +120,7 @@ print('\n' + '=' * 80)
 
 
 print('=' * 80 + '\n') 
-print('\t\t\tvat.function.py\n')
+print('\t\t\t vat.function.py\n')
 
 print() 
 
@@ -137,7 +145,7 @@ print('\n' + '=' * 80)
 
 
 print('=' * 80 + '\n') 
-print('\t\t\tscoping.level.1.py\n')
+print('\t\t\t scoping.level.1.py\n')
 
 test = 0  # this is defined in the global scope
 
@@ -155,7 +163,7 @@ print('\n' + '=' * 80)
 #==========================================================
 
 print('=' * 80 + '\n') 
-print('\t\t\tscoping.level.2.py\n')
+print('\t\t\t scoping.level.2.py\n')
 
 
 test = 0  # global scope 
@@ -187,20 +195,20 @@ print('\n' + '=' * 80)
 # ===========================================================
 
 print('=' * 80 + '\n') 
-print('\t\t\tscoping.level.2.nonlocal.py\n')
+print('\t\t\t scoping.level.2.nonlocal.py\n')
 
-test = 0  # global scope 
+test = 0                    # global scope 
 
 def outer():
-    test = 1  # outer scope 
+    test = 1                # outer scope 
 
     def inner():
         nonlocal test 
-        test = 2  # nearest enclosing scope 
+        test = 2            # nearest enclosing scope 
         print('inner:', test)
         
     inner()
-    print('outer:', test)  # 2 by nonlocal
+    print('outer:', test)   # 2 by nonlocal
 
 
 outer()
@@ -217,15 +225,15 @@ print('\n' + '=' * 80)
 #==========================================================
 
 print('=' * 80 + '\n') 
-print('\t\t\tscoping.level.2.nonlocal.py modified by global.1\n')
+print('\t\t\t scoping.level.2.nonlocal.py modified by global.1\n')
 
-test = 0  # global scope 
+test = 0                # global scope 
 
 def outer():
-    test = 1  # outer scope 
+    test = 1            # outer scope 
 
     def inner():
-        global test  # outer scope 
+        global test     # outer scope 
         test = 2
         print('inner:', test)
 
@@ -246,7 +254,7 @@ print('\n' + '=' * 80)
 #==========================================================
 
 print('=' * 80 + '\n') 
-print('\t\t\tscoping.level.2.nonlocal.py modified by global.2\n')
+print('\t\t\t scoping.level.2.nonlocal.py modified by global.2\n')
 
 def outer():
     def inner():
@@ -272,17 +280,18 @@ print('\n' + '=' * 80)
 
 
 print('=' * 80 + '\n') 
-print('\t\t\tscoping.level.2.global.py\n')
+print('\t\t\t scoping.level.2.global.py\n')
 
-test = 0  # global scope 
+test = 0            # global scope 
 
 def outer():
-    test = 1  # outer scope 
+    test = 1        # outer scope 
 
     def inner():
         global test 
-        test = 2  # global scope 
+        test = 2    # global scope 
         print('inner:', test)
+        
     inner()
     print('outer:', test)
 
@@ -297,13 +306,13 @@ print('global:', test)
 
 print('\n' + '=' * 80) 
 
+
 # ===========================================================
 #   Assignment to argument names don't affect the caller
 # ===========================================================
 
-
 print('=' * 80 + '\n') 
-print('\t\t\tkey.points.assignment.py\n')
+print('\t\t\t key.points.assignment.py\n')
 
 x = 3
 
@@ -312,17 +321,18 @@ def func(x):
     print(x)
     
 
-func(x)  # 7
-print(x)  # 3
+func(x)     # 7
+print(x)    # 3
 
+
+print('\n' + '=' * 80) 
 
 # ===========================================================
 #           Changing a mutable affects the caller
 # ===========================================================
 
-
 print('=' * 80 + '\n') 
-print('\t\t\tkey.points.mutable.py\n')
+print('\t\t\t key.points.mutable.py\n')
 
 
 x = [1, 2, 3]
@@ -332,7 +342,7 @@ def func(x):
 
 
 print(x)  # [1, 2, 3]   
-func(x)   # this affects the caller!
+func(x)   # this caller change to the list!
 print(x)  # [1, 42, 3]
 
 
@@ -342,20 +352,20 @@ print('\n' + '=' * 80)
 
 
 print('=' * 80 + '\n') 
-print('\t\t\tkey.points.mutable.assignment.py.py\n')
+print('\t\t\t key.points.mutable.assignment.py\n')
 
 x = [1, 2, 3]
 
 def func(x):
-    x[1] = 42  # this changes the caller!
-    x = 'something else'  # this points x to a new string object 
+    x[1] = 42               # this changes the caller!
+    x = 'something else'    # this points x to a new string object 
 
 
-print(x)  # [1, 2, 3]   
+print(x)                    # [1, 2, 3]   
 func(x)   
-print(x)  # [1, 42, 3] 
-print(func.x)  #  
-print()
+print(x)                    # [1, 42, 3] 
+# print(func.x)             #! how I can have access to variable x through func() method? 
+# print()
 
 
 print('\n' + '=' * 80) 
@@ -364,29 +374,41 @@ print('\n' + '=' * 80)
 
 print('=' * 80 + '\n') 
 
+
 class Func_x:
     x = [1, 2, 3]
 
     def func(x):
-        x[1] = 42  # this changes the caller!
-        x = 'something else'  # this points x to a new string object 
+        x[1] = 42               # this changes the caller!
+        x = 'something else'    # this points x to a new string object 
 
 
-print(Func_x.x)  # [1, 2, 3]   
+print(Func_x.x)                 # [1, 2, 3]   
 Func_x.func(Func_x.x)   
-print(Func_x.x)  # [1, 42, 3] 
-# print(Func_x.func.x)  # Extract innner scope variable!!!!!!!! How is it?   # AttributeError: 'function' object has no attribute 'x'
+print(Func_x.x)                 # [1, 42, 3] 
+# print(Func_x.func.x)          #! Extract innner scope variable!!!!!!!! How is it?   # AttributeError: 'function' object has no attribute 'x'
+print()
 
-
-
-
-
+f = Func_x()
+print('x=', f.x)
+# print('x in fun()=', f.func.x)  #! how I can have access to variable x through func() method? 
 
 
 print('\n' + '=' * 80) 
 
 
-#==========================================================
+# ===========================================================
+"""           How to specify input parameters             """
+# ===========================================================
+""" There are five different ways of specifying input parameters. Let's look at them one
+by one. """
+
+
+#! [Alert: Deprecated method, do not use]  
+#? [Query or question: Should this method be exposed in the public API?]  
+#// [CommentedOut: Do not use] 
+#todo [Refactor: this method so that it conforms to the API. Create some test cases]   
+#* [Important: information is highlighted] 
 
 
 print('=' * 80 + '\n') 
@@ -448,7 +470,7 @@ print('\n' + '=' * 80)
 """ 
 print() 
 
-#def func(a, b, c):
+# def func(a, b, c):
 def func(a=1, b=2, c=3):
     print(a, b, c)
 
